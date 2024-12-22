@@ -5,7 +5,7 @@ import io.github.milkdrinkers.versionwatch.platform.exception.ConfigException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ConfigSpigotBuilder extends ConfigBuilder {
+public class ConfigSpigotBuilder extends ConfigBuilder<ConfigSpigotBuilder> {
     private final static String LATEST_RELEASE_LINK = "https://www.spigotmc.org/resources/%s/updates";
     private final static String LATEST_RELEASE_API = "https://api.spiget.org/v2/resources/%s/versions/latest";
 

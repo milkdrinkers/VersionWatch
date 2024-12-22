@@ -5,7 +5,7 @@ import io.github.milkdrinkers.versionwatch.platform.exception.ConfigException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ConfigGithubBuilder extends ConfigBuilder {
+public class ConfigGithubBuilder extends ConfigBuilder<ConfigGithubBuilder> {
     private final static String LATEST_RELEASE_LINK = "https://github.com/%s/%s/releases/latest";
     private final static String LATEST_RELEASE_API = "https://api.github.com/repos/%s/%s/releases/latest";
 

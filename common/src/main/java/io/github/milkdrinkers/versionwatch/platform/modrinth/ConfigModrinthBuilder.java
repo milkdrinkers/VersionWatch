@@ -5,7 +5,7 @@ import io.github.milkdrinkers.versionwatch.platform.exception.ConfigException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ConfigModrinthBuilder extends ConfigBuilder {
+public class ConfigModrinthBuilder extends ConfigBuilder<ConfigModrinthBuilder> {
     private final static String LATEST_RELEASE_LINK = "https://modrinth.com/project/%s/version/latest";
     private final static String LATEST_RELEASE_API = "https://api.modrinth.com/v2/project/%s/version";
 

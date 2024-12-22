@@ -5,7 +5,7 @@ import io.github.milkdrinkers.versionwatch.platform.exception.ConfigException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ConfigHangarBuilder extends ConfigBuilder {
+public class ConfigHangarBuilder extends ConfigBuilder<ConfigHangarBuilder> {
     private final static String LATEST_RELEASE_LINK = "https://hangar.papermc.io/%s/%s/versions";
     private final static String LATEST_RELEASE_API = "https://hangar.papermc.io/api/v1/projects/%s/latestrelease";
 

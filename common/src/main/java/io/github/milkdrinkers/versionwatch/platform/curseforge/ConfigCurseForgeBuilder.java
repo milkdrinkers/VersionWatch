@@ -5,7 +5,7 @@ import io.github.milkdrinkers.versionwatch.platform.exception.ConfigException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ConfigCurseForgeBuilder extends ConfigBuilder {
+public class ConfigCurseForgeBuilder extends ConfigBuilder<ConfigCurseForgeBuilder> {
     private final static String LATEST_RELEASE_LINK = "https://www.curseforge.com/minecraft/mc-mods/%s/files";
     private final static String LATEST_RELEASE_API = "https://api.curseforge.com/v1/mods/%s/files";
 

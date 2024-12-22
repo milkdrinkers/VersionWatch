@@ -5,7 +5,7 @@ import io.github.milkdrinkers.versionwatch.platform.exception.ConfigException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ConfigBuiltByBitBuilder extends ConfigBuilder {
+public class ConfigBuiltByBitBuilder extends ConfigBuilder<ConfigBuiltByBitBuilder> {
     private final static String LATEST_RELEASE_LINK = "https://builtbybit.com/resources/%s/updates";
     private final static String LATEST_RELEASE_API = "https://api.builtbybit.com/v1/resources/%s/versions/latest";
 
