@@ -16,6 +16,6 @@ junit-platform = { module = "org.junit.platform:junit-platform-launcher" }
 junit = ["junit-jupiter", "junit-platform"]
 
 [plugins]
-maven-deployer = "io.deepmedia.tools.deployer:0.16.0"
+maven-deployer = "io.deepmedia.tools.deployer:0.17.0"
 shadow = "com.gradleup.shadow:8.3.5"
 run-paper = "xyz.jpenilla.run-paper:2.3.1"
