@@ -17,5 +17,5 @@ junit = ["junit-jupiter", "junit-platform"]
 
 [plugins]
 maven-deployer = "io.deepmedia.tools.deployer:0.17.0"
-shadow = "com.gradleup.shadow:8.3.5"
+shadow = "com.gradleup.shadow:8.3.6"
 run-paper = "xyz.jpenilla.run-paper:2.3.1"
