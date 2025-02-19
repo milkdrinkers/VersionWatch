@@ -3,7 +3,7 @@
 [libraries]
 annotations = "org.jetbrains:annotations:26.0.2"
 gson = "com.google.code.gson:gson:2.12.1"
-java-semver = "io.github.milkdrinkers:javasemver:0.0.20"
+java-semver = "io.github.milkdrinkers:javasemver:0.0.21"
 paper-api = "io.papermc.paper:paper-api:1.17-R0.1-SNAPSHOT"
 spigot-api = "org.spigotmc:spigot-api:1.17-R0.1-SNAPSHOT"
 
