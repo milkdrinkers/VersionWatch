@@ -1,14 +1,16 @@
 package io.github.milkdrinkers.versionwatch.platform.modrinth;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import io.github.milkdrinkers.javasemver.Version;
+import io.github.milkdrinkers.versionwatch.Platform;
+import io.github.milkdrinkers.versionwatch.platform.PlatformConfig;
 import io.github.milkdrinkers.versionwatch.platform.PlatformImplementation;
 import io.github.milkdrinkers.versionwatch.platform.exception.BadResponseException;
 import io.github.milkdrinkers.versionwatch.platform.exception.BadStatusCodeException;
 import io.github.milkdrinkers.versionwatch.platform.exception.VersionWatchException;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 public class ModrinthCheck implements PlatformImplementation {
     private final ConfigModrinth config;
@@ -27,7 +30,17 @@ public class ModrinthCheck implements PlatformImplementation {
     }
 
     @Override
-    public Version fetchLatestVersion() throws VersionWatchException {
+    public @NotNull PlatformConfig getConfig() {
+        return config;
+    }
+
+    @Override
+    public @NotNull Platform getPlatform() {
+        return Platform.Modrinth;
+    }
+
+    @Override
+    public @Nullable Version fetchLatestVersion() throws VersionWatchException {
         try {
             final URL url = new URL(config.getLatestReleaseAPI());
             final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -51,24 +64,36 @@ public class ModrinthCheck implements PlatformImplementation {
     }
 
     @Override
-    public CompletableFuture<Version> fetchLatestVersionAsync() throws VersionWatchException {
-        return CompletableFuture.supplyAsync(this::fetchLatestVersion);
+    public @NotNull CompletableFuture<@Nullable Version> fetchLatestVersionAsync() throws VersionWatchException {
+        return CompletableFuture
+            .supplyAsync(this::fetchLatestVersion)
+            .exceptionally(throwable -> null);
     }
 
     @Override
-    public @Nullable Version parseResponse(final InputStream inputStream) throws BadResponseException {
+    public @Nullable Version parseResponse(final @NotNull InputStream inputStream) throws BadResponseException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-            final JsonArray versions = JsonParser.parseReader(reader).getAsJsonArray();
+            final String content = reader.lines().collect(Collectors.joining());
 
-            if (versions.isEmpty())
-                throw new BadResponseException("Versions array is empty!");
+            final JSONArray releases = new JSONArray(content);
 
-            // First version in the array is the latest
-            final JsonObject latestVersion = versions.get(0).getAsJsonObject();
+            if (releases.isEmpty())
+                throw new BadResponseException("Releases array is empty!");
 
-            final String version = latestVersion.getAsJsonPrimitive("version_number").getAsString().toUpperCase();
+            // Find first release in array
+            for (int i = 0; i < releases.length(); i++) {
+                final JSONObject release = releases.getJSONObject(i);
 
-            return Version.of(version);
+                // Ignore non-releases
+                if (!release.getString("version_type").equals("release"))
+                    continue;
+
+                final String version = release.getString("version_number").toUpperCase();
+
+                return Version.of(version);
+            }
+
+            return null;
         } catch (Exception e) {
             throw new BadResponseException("Failed to parse version JSON response.", e);
         }

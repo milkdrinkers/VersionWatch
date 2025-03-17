@@ -1,28 +1,28 @@
 package io.github.milkdrinkers.versionwatch.platform.github;
 
-import io.github.milkdrinkers.versionwatch.platform.ConfigBuilder;
+import io.github.milkdrinkers.versionwatch.platform.PlatformConfigBuilder;
 import io.github.milkdrinkers.versionwatch.platform.exception.ConfigException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ConfigGithubBuilder extends ConfigBuilder<ConfigGithubBuilder> {
+public class ConfigGithubBuilder extends PlatformConfigBuilder<ConfigGithubBuilder> {
     private final static String LATEST_RELEASE_LINK = "https://github.com/%s/%s/releases/latest";
     private final static String LATEST_RELEASE_API = "https://api.github.com/repos/%s/%s/releases/latest";
 
     private @Nullable String githubOwner;
     private @Nullable String githubRepo;
 
-    public @NotNull ConfigGithubBuilder withOwner(@NotNull String githubUser) {
+    public @NotNull ConfigGithubBuilder withOwner(@Nullable String githubUser) {
         this.githubOwner = githubUser;
         return this;
     }
 
-    public @NotNull ConfigGithubBuilder withRepo(@NotNull String githubRepo) {
+    public @NotNull ConfigGithubBuilder withRepo(@Nullable String githubRepo) {
         this.githubRepo = githubRepo;
         return this;
     }
 
-    public ConfigGithub build() throws ConfigException {
+    public @NotNull ConfigGithub build() throws ConfigException {
         if (super.getUserAgent() == null)
             throw new ConfigException("Missing required field user agent in version watch config!");
 

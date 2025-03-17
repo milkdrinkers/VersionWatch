@@ -1,21 +1,18 @@
 package io.github.milkdrinkers.versionwatch.platform.hangar;
 
-import io.github.milkdrinkers.versionwatch.platform.Config;
+import io.github.milkdrinkers.versionwatch.platform.PlatformConfig;
 import io.github.milkdrinkers.versionwatch.platform.VersionWatchConfig;
 import org.jetbrains.annotations.NotNull;
 
-public class ConfigHangar extends Config implements VersionWatchConfig {
-    private final String githubUser;
-    private final String githubRepo;
-    private final String latestReleaseLink;
-    private final String latestReleaseAPI;
+@SuppressWarnings("unused")
+public class ConfigHangar extends PlatformConfig implements VersionWatchConfig {
+    private final @NotNull String githubUser;
+    private final @NotNull String githubRepo;
 
     ConfigHangar(@NotNull String userAgent, @NotNull String githubUser, @NotNull String githubRepo, @NotNull String latestReleaseLink, @NotNull String latestReleaseAPI) {
-        super(userAgent);
+        super(userAgent, latestReleaseLink, latestReleaseAPI);
         this.githubUser = githubUser;
         this.githubRepo = githubRepo;
-        this.latestReleaseLink = latestReleaseLink;
-        this.latestReleaseAPI = latestReleaseAPI;
     }
 
     public String getGithubUser() {
@@ -24,13 +21,5 @@ public class ConfigHangar extends Config implements VersionWatchConfig {
 
     public String getGithubRepo() {
         return githubRepo;
-    }
-
-    public String getLatestReleaseLink() {
-        return latestReleaseLink;
-    }
-
-    public String getLatestReleaseAPI() {
-        return latestReleaseAPI;
     }
 }

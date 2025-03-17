@@ -1,11 +1,11 @@
 package io.github.milkdrinkers.versionwatch.platform.builtbybit;
 
-import io.github.milkdrinkers.versionwatch.platform.ConfigBuilder;
+import io.github.milkdrinkers.versionwatch.platform.PlatformConfigBuilder;
 import io.github.milkdrinkers.versionwatch.platform.exception.ConfigException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ConfigBuiltByBitBuilder extends ConfigBuilder<ConfigBuiltByBitBuilder> {
+public class ConfigBuiltByBitBuilder extends PlatformConfigBuilder<ConfigBuiltByBitBuilder> {
     private final static String LATEST_RELEASE_LINK = "https://builtbybit.com/resources/%s/updates";
     private final static String LATEST_RELEASE_API = "https://api.builtbybit.com/v1/resources/%s/versions/latest";
 
@@ -13,22 +13,22 @@ public class ConfigBuiltByBitBuilder extends ConfigBuilder<ConfigBuiltByBitBuild
     private @Nullable TokenType tokenType;
     private @Nullable String resourceId;
 
-    public @NotNull ConfigBuiltByBitBuilder withToken(@NotNull String token) {
+    public @NotNull ConfigBuiltByBitBuilder withToken(@Nullable String token) {
         this.token = token;
         return this;
     }
 
-    public @NotNull ConfigBuiltByBitBuilder withTokenType(@NotNull TokenType tokenType) {
+    public @NotNull ConfigBuiltByBitBuilder withTokenType(@Nullable TokenType tokenType) {
         this.tokenType = tokenType;
         return this;
     }
 
-    public @NotNull ConfigBuiltByBitBuilder withResource(@NotNull String resourceId) {
+    public @NotNull ConfigBuiltByBitBuilder withResourceId(@Nullable String resourceId) {
         this.resourceId = resourceId;
         return this;
     }
 
-    public ConfigBuiltByBit build() throws ConfigException {
+    public @NotNull ConfigBuiltByBit build() throws ConfigException {
         if (super.getUserAgent() == null)
             throw new ConfigException("Missing required field user agent in version watch config!");
 

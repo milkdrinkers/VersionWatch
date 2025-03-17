@@ -3,8 +3,8 @@ package io.github.milkdrinkers.versionwatch.platform;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class ConfigBuilder<T extends ConfigBuilder<T>> {
-    private @Nullable String userAgent;
+public abstract class PlatformConfigBuilder<T extends PlatformConfigBuilder<T>> {
+    private @Nullable String userAgent = "VersionWatcher";
 
     @SuppressWarnings("unchecked")
     public @NotNull T withUserAgent(@NotNull String userAgent) {

@@ -1,8 +1,9 @@
 package io.github.milkdrinkers.versionwatch.platform.builtbybit;
 
+@SuppressWarnings("unused")
 public enum TokenType {
     SHARED("Shared"),
-    PRIVATE("Private");
+    @SuppressWarnings("unused") PRIVATE("Private");
 
     private final String tokenTypeName;
 

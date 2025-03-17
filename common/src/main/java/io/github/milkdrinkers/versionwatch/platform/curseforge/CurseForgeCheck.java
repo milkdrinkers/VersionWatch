@@ -1,14 +1,16 @@
 package io.github.milkdrinkers.versionwatch.platform.curseforge;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import io.github.milkdrinkers.javasemver.Version;
+import io.github.milkdrinkers.versionwatch.Platform;
+import io.github.milkdrinkers.versionwatch.platform.PlatformConfig;
 import io.github.milkdrinkers.versionwatch.platform.PlatformImplementation;
 import io.github.milkdrinkers.versionwatch.platform.exception.BadResponseException;
 import io.github.milkdrinkers.versionwatch.platform.exception.BadStatusCodeException;
 import io.github.milkdrinkers.versionwatch.platform.exception.VersionWatchException;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 public class CurseForgeCheck implements PlatformImplementation {
     private final ConfigCurseForge config;
@@ -27,7 +30,18 @@ public class CurseForgeCheck implements PlatformImplementation {
     }
 
     @Override
-    public Version fetchLatestVersion() throws VersionWatchException {
+    public @NotNull PlatformConfig getConfig() {
+        return config;
+    }
+
+    @Override
+    public @NotNull Platform getPlatform() {
+        return Platform.CurseForge;
+    }
+
+    @SuppressWarnings("ExtractMethodRecommender")
+    @Override
+    public @Nullable Version fetchLatestVersion() throws VersionWatchException {
         try {
             final URL url = new URL(config.getLatestReleaseAPI());
             final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -53,24 +67,28 @@ public class CurseForgeCheck implements PlatformImplementation {
     }
 
     @Override
-    public CompletableFuture<Version> fetchLatestVersionAsync() throws VersionWatchException {
-        return CompletableFuture.supplyAsync(this::fetchLatestVersion);
+    public @NotNull CompletableFuture<@Nullable Version> fetchLatestVersionAsync() throws VersionWatchException {
+        return CompletableFuture
+            .supplyAsync(this::fetchLatestVersion)
+            .exceptionally(throwable -> null);
     }
 
     @Override
-    public @Nullable Version parseResponse(final InputStream inputStream) throws BadResponseException {
+    public @Nullable Version parseResponse(final @NotNull InputStream inputStream) throws BadResponseException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-            final JsonObject jsonObject = JsonParser.parseReader(reader).getAsJsonObject();
+            final String content = reader.lines().collect(Collectors.joining());
 
-            final JsonArray files = jsonObject.getAsJsonArray("data");
+            final JSONObject jsonObject = new JSONObject(content);
+
+            final JSONArray files = jsonObject.getJSONArray("data");
 
             if (files.isEmpty())
                 throw new BadResponseException("Versions array is empty!");
 
             // First version in the array is the latest
-            final JsonObject latestVersion = files.get(0).getAsJsonObject();
+            final JSONObject latestVersion = files.getJSONObject(0);
 
-            final String version = latestVersion.getAsJsonPrimitive("displayName").getAsString().toUpperCase();
+            final String version = latestVersion.getString("displayName").toUpperCase();
 
             return Version.of(version);
         } catch (Exception e) {

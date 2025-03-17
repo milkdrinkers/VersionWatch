@@ -3,12 +3,21 @@ plugins {
 }
 
 dependencies {
-    api(libs.gson)
-    api(libs.java.semver)
+    compileOnlyApi(libs.java.semver) // Since java semver should be shaded by the dependent project'
+    implementation(libs.json)
+
+    testImplementation(libs.java.semver)
 }
 
 tasks.build {
     dependsOn(tasks.shadowJar)
+}
+
+tasks.shadowJar {
+    archiveBaseName.set(rootProject.name)
+    archiveClassifier.set("")
+    relocate("org.json", "io.github.milkdrinkers.versionwatch.lib.json")
+    minimize()
 }
 
 deployer {

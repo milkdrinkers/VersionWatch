@@ -1,22 +1,22 @@
 package io.github.milkdrinkers.versionwatch.platform.spigot;
 
-import io.github.milkdrinkers.versionwatch.platform.ConfigBuilder;
+import io.github.milkdrinkers.versionwatch.platform.PlatformConfigBuilder;
 import io.github.milkdrinkers.versionwatch.platform.exception.ConfigException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ConfigSpigotBuilder extends ConfigBuilder<ConfigSpigotBuilder> {
+public class ConfigSpigotBuilder extends PlatformConfigBuilder<ConfigSpigotBuilder> {
     private final static String LATEST_RELEASE_LINK = "https://www.spigotmc.org/resources/%s/updates";
     private final static String LATEST_RELEASE_API = "https://api.spiget.org/v2/resources/%s/versions/latest";
 
     private @Nullable String resourceId;
 
-    public @NotNull ConfigSpigotBuilder withResource(@NotNull String resourceId) {
+    public @NotNull ConfigSpigotBuilder withResourceId(@Nullable String resourceId) {
         this.resourceId = resourceId;
         return this;
     }
 
-    public ConfigSpigot build() throws ConfigException {
+    public @NotNull ConfigSpigot build() throws ConfigException {
         if (super.getUserAgent() == null)
             throw new ConfigException("Missing required field user agent in version watch config!");
 
