@@ -41,7 +41,7 @@ deployer {
             url = "https://github.com/milkdrinkers/versionwatch"
         }
 
-        license("GNU General Public License Version 3", "https://www.gnu.org/licenses/gpl-3.0.en.html#license-text")
+        license("MIT License", "https://opensource.org/licenses/MIT")
 
         developer({
             name.set("darksaid98")
