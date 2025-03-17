@@ -78,9 +78,9 @@ dependencies {
 
 ## Usage Example 🚀
 ```java
-import io.github.milkdrinkers.versionwatch.queue.RunningTaskQueue;
-import io.github.milkdrinkers.versionwatch.PlatformBukkit;
-import io.github.milkdrinkers.versionwatch.Scheduler;
+import io.github.milkdrinkers.javasemver.Version;
+import io.github.milkdrinkers.versionwatch.Platform;
+import io.github.milkdrinkers.versionwatch.VersionWatcher;
 
 final Version currentVersion = Version.of("1.0.0");
 
