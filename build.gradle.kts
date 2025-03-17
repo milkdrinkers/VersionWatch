@@ -5,11 +5,12 @@ plugins {
     alias(libs.plugins.shadow) apply false
 }
 
+applyCustomVersion()
+
 subprojects {
     apply(plugin = "java-library")
     apply(plugin = rootProject.libs.plugins.shadow.get().pluginId)
 
-    applyCustomVersion()
 
     repositories {
         maven("https://repo.papermc.io/repository/maven-public/")
@@ -27,15 +28,14 @@ subprojects {
     }
 
     java {
-        toolchain.languageVersion.set(JavaLanguageVersion.of(17))
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        toolchain.languageVersion.set(JavaLanguageVersion.of(21))
         withJavadocJar()
         withSourcesJar()
     }
 
     tasks {
         compileJava {
+            options.release.set(8)
             options.encoding = Charsets.UTF_8.name()
             options.compilerArgs.addAll(arrayListOf("-Xlint:all", "-Xlint:-processing", "-Xdiags:verbose"))
         }

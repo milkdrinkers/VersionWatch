@@ -10,6 +10,8 @@ import java.util.concurrent.CompletableFuture;
 
 public interface PlatformImplementation {
     Version fetchLatestVersion() throws VersionWatchException;
+
     CompletableFuture<Version> fetchLatestVersionAsync() throws VersionWatchException;
+
     @Nullable Version parseResponse(final InputStream inputStream) throws BadResponseException;
 }

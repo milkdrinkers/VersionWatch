@@ -13,12 +13,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 
 public class PolymartCheck implements PlatformImplementation {
@@ -30,25 +27,23 @@ public class PolymartCheck implements PlatformImplementation {
 
     @Override
     public Version fetchLatestVersion() throws VersionWatchException {
-        final HttpClient httpClient = HttpClient.newHttpClient();
-        final HttpRequest req = HttpRequest.newBuilder()
-            .uri(URI.create(config.getLatestReleaseAPI()))
-            .timeout(Duration.ofSeconds(10))
-            .header("Accept", "application/json")
-            .header("User-Agent", config.getUserAgent())
-            .build();
-
         try {
-            final HttpResponse<InputStream> resp = httpClient.send(req, HttpResponse.BodyHandlers.ofInputStream());
+            final URL url = new URL(config.getLatestReleaseAPI());
+            final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setConnectTimeout(10000);
+            connection.setReadTimeout(10000);
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestProperty("User-Agent", config.getUserAgent());
 
-            if (resp.statusCode() != 200)
-                throw new BadStatusCodeException("Failed to fetch version info: " + resp.statusCode());
+            int responseCode = connection.getResponseCode();
 
-            return parseResponse(resp.body());
+            if (responseCode != 200)
+                throw new BadStatusCodeException("Failed to fetch version info: " + responseCode);
+
+            return parseResponse(connection.getInputStream());
         } catch (IOException e) {
             throw new BadResponseException("IOException during update check: ", e);
-        } catch (InterruptedException e) {
-            throw new BadResponseException("InterruptedException during update check: ", e);
         } catch (SecurityException e) {
             throw new BadResponseException("SecurityException during update check: ", e);
         }
