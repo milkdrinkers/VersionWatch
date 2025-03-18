@@ -22,7 +22,7 @@
 
 **VersionWatch** is a lightweight, easy-to-use Java library that simplifies fetching the latest version from a growing list of supported websites. 
 
-It supports both synchronous and asynchronous requests and leverages **Semantic Versioning (SemVer)** for parsing and comparing versions via the [`java-semver`](https://github.com/MilkDrinkers/java-semver) library. Ideal for integration into applications requiring update checking.
+It supports both synchronous and asynchronous requests and leverages **Semantic Versioning (SemVer)** for parsing and comparing versions via the [`Java-Semver`](https://github.com/MilkDrinkers/Java-Semver) library. Ideal for integration into applications requiring update checking.
 
 ---
 
@@ -32,13 +32,13 @@ It supports both synchronous and asynchronous requests and leverages **Semantic 
 - ⚡ **Sync/Async support**: Choose between blocking or non-blocking requests.  
 - 🧪 **Well-tested**: Robust JUnit test coverage ensures reliability.  
 - 🛠 **Simple API**: Minimal setup and intuitive methods.  
-- 🔍 **SemVer Support**: Built on [`java-semver`](https://github.com/MilkDrinkers/java-semver) for reliable parsing and comparison of semantic versions.  
+- 🔍 **SemVer Support**: Built on [`Java-Semver`](https://github.com/MilkDrinkers/Java-Semver) for reliable parsing and comparison of semantic versions.  
 - 🚀 **Light**: The library is built with bundle size in mind to keep your application small.
 - 🧩 **Wide Support**: Supports fetching versions from **Spigot**, **Modrinth**, **CurseForge**, **GitHub**, **Hangar**, **BuiltByBit** and **Polymart**. 
 
 ## 📦 Installation
 
-Add VersionWatch and its `java-semver` dependency to your project with Maven or Gradle:
+Add VersionWatch and its `Java-Semver` dependency to your project with Maven or Gradle:
 
 <details>
 <summary>Gradle Kotlin DSL</summary>
@@ -50,7 +50,7 @@ repositories {
 
 dependencies {
     implementation("io.github.milkdrinkers:versionwatch:LATEST_VERSION")
-    implementation("io.github.milkdrinkers:java-semver:LATEST_VERSION")
+    implementation("io.github.milkdrinkers:javasemver:LATEST_VERSION")
 }
 ```
 </details>
@@ -68,7 +68,7 @@ dependencies {
         </dependency>  
         <dependency>  
             <groupId>io.github.milkdrinkers</groupId>  
-            <artifactId>java-semver</artifactId>  
+            <artifactId>javasemver</artifactId>  
             <version>LATEST_VERSION</version>  
         </dependency>  
     </dependencies>
