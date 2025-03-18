@@ -3,14 +3,25 @@ import java.time.Instant
 plugins {
     `java-library`
     alias(libs.plugins.shadow) apply false
+
+    eclipse
+    idea
 }
 
 applyCustomVersion()
+
+tasks {
+    jar {
+        enabled = false
+    }
+}
 
 subprojects {
     apply(plugin = "java-library")
     apply(plugin = rootProject.libs.plugins.shadow.get().pluginId)
 
+    project.version = rootProject.version
+    project.description = rootProject.description
 
     repositories {
         maven("https://repo.papermc.io/repository/maven-public/")
@@ -30,7 +41,6 @@ subprojects {
     java {
         toolchain.languageVersion.set(JavaLanguageVersion.of(21))
         withJavadocJar()
-        withSourcesJar()
     }
 
     tasks {
@@ -57,14 +67,14 @@ subprojects {
 
         test {
             useJUnitPlatform()
-            failFast = true
+            failFast = false
         }
     }
 }
 
 fun applyCustomVersion() {
     // Apply custom version arg or append snapshot version
-    val ver = properties["altVer"]?.toString() ?: "${rootProject.version}-SNAPSHOT-${Instant.now().epochSecond}"
+    val ver = properties["altVer"]?.toString() ?: "${rootProject.version}-SNAPSHOT.${Instant.now().epochSecond}"
 
     // Strip prefixed "v" from version tag
     rootProject.version = (if (ver.first().equals('v', true)) ver.substring(1) else ver.uppercase()).uppercase()
