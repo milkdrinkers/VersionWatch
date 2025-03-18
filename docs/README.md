@@ -20,9 +20,9 @@
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/milkdrinkers/VersionWatch?style=for-the-badge&labelColor=141417">
 </p>
 
-**VersionWatch** is a lightweight, easy-to-use Java library that simplifies fetching the latest version from a growing list of supported websites. 
+**VersionWatch** is a lightweight, easy-to-use Java library that simplifies version monitoring across popular software distribution platforms.
 
-It supports both synchronous and asynchronous requests and leverages **Semantic Versioning (SemVer)** for parsing and comparing versions via the [`Java-Semver`](https://github.com/MilkDrinkers/Java-Semver) library. Ideal for integration into applications requiring update checking.
+It supports both synchronous and asynchronous requests and leverages **Semantic Versioning (SemVer)** for parsing and comparing versions via the [`Java-Semver`](https://github.com/MilkDrinkers/Java-Semver) library.
 
 ---
 
