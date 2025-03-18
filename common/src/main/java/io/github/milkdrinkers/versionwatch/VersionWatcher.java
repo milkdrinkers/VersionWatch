@@ -112,19 +112,6 @@ public class VersionWatcher {
     }
 
     /**
-     * Checks if the current version is newer or equal than the latest release
-     *
-     * @return boolean
-     * @see Version#isNewerOrEqual(Version, Version)
-     */
-    public boolean isLatest() {
-        if (getLatestVersion() == null)
-            return true;
-
-        return Version.isNewerOrEqual(getCurrentVersion(), getLatestVersion());
-    }
-
-    /**
      * Fetch the latest version from the configured {@link PlatformImplementation}.
      *
      * @return the latest version or null
@@ -162,6 +149,32 @@ public class VersionWatcher {
     @ApiStatus.Internal
     private synchronized void setLatestVersion(final @Nullable Version version) {
         latestVersion = version;
+    }
+
+    /**
+     * Checks if the current version is newer or equal than the latest release
+     *
+     * @return boolean
+     * @see Version#isNewerOrEqual(Version, Version)
+     */
+    public boolean isLatest() {
+        if (getLatestVersion() == null)
+            return true;
+
+        return Version.isNewerOrEqual(getCurrentVersion(), getLatestVersion());
+    }
+
+    /**
+     * Checks if the current version is outdated
+     *
+     * @return boolean
+     * @see Version#isOlder(Version, Version)
+     */
+    public boolean isOutdated() {
+        if (getLatestVersion() == null)
+            return false;
+
+        return Version.isOlder(getCurrentVersion(), getLatestVersion());
     }
 
     /**

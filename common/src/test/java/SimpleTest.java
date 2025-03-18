@@ -78,6 +78,7 @@ public class SimpleTest {
         System.out.println(watcher.getLatestVersion().getVersionFull());
         System.out.println(watcher.getDownloadURL());
         Assertions.assertFalse(watcher.isLatest());
+        Assertions.assertTrue(watcher.isOutdated());
     }
 
     @Test
