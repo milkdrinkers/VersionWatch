@@ -3,7 +3,7 @@
 [libraries]
 annotations = "org.jetbrains:annotations:26.0.2"
 java-semver = "io.github.milkdrinkers:javasemver:1.0.0"
-json = "org.json:json:20250107"
+json = "org.json:json:20250517"
 
 # Testing
 junit-bom = "org.junit:junit-bom:5.12.2"
