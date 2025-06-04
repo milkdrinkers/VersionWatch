@@ -28,13 +28,13 @@ It supports both synchronous and asynchronous requests and leverages **Semantic 
 
 ## 🌟 Features
 
-- ✅ **Java 8+ compatible**: Works with older and modern Java environments.  
-- ⚡ **Sync/Async support**: Choose between blocking or non-blocking requests.  
-- 🧪 **Well-tested**: Robust JUnit test coverage ensures reliability.  
-- 🛠 **Simple API**: Minimal setup and intuitive methods.  
-- 🔍 **SemVer Support**: Built on [`Java-Semver`](https://github.com/MilkDrinkers/Java-Semver) for reliable parsing and comparison of semantic versions.  
-- 🚀 **Light**: The library is built with bundle size in mind to keep your application small.
-- 🧩 **Wide Support**: Supports fetching versions from **Spigot**, **Modrinth**, **CurseForge**, **GitHub**, **Hangar**, **BuiltByBit** and **Polymart**. 
+- **Java 8+ compatible**: Works with older and modern Java environments.  
+- **Sync/Async support**: Choose between blocking or non-blocking requests.  
+- **Well-tested**: Robust JUnit test coverage ensures reliability.  
+- **Simple API**: Minimal setup and intuitive methods.  
+- **SemVer Support**: Built on [`Java-Semver`](https://github.com/MilkDrinkers/Java-Semver) for reliable parsing and comparison of semantic versions.  
+- **Light**: The library is built with bundle size in mind to keep your application small.
+- **Wide Support**: Supports fetching versions from **Spigot**, **Modrinth**, **CurseForge**, **GitHub**, **Hangar**, **BuiltByBit** and **Polymart**. 
 
 ## 📦 Installation
 
