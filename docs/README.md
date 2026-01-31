@@ -13,7 +13,7 @@
 <a href="https://central.sonatype.com/artifact/io.github.milkdrinkers/versionwatch">
     <img alt="Maven Central Version" src="https://img.shields.io/maven-central/v/io.github.milkdrinkers/versionwatch?style=for-the-badge&labelColor=141417">
 </a>
-<a href="https://milkdrinkers.athyrium.eu/versionwatch">
+<a href="https://docs.milkdrinkers.dev/versionwatch">
     <img alt="Documentation" src="https://img.shields.io/badge/DOCUMENTATION-900C3F?style=for-the-badge&labelColor=141417">
 </a>
 <a href="https://javadoc.io/doc/io.github.milkdrinkers/versionwatch">
@@ -110,7 +110,7 @@ System.out.println("Has update: " + !watcher.isLatest().toString())
 ## 📚 Documentation
 
 - [Full Javadoc Documentation](https://javadoc.io/doc/io.github.milkdrinkers/versionwatch)
-- [Documentation](https://milkdrinkers.athyrium.eu/versionwatch)
+- [Documentation](https://docs.milkdrinkers.dev/versionwatch)
 - [Maven Central](https://central.sonatype.com/artifact/io.github.milkdrinkers/versionwatch)
 
 ---
