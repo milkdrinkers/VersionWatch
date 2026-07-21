@@ -35,7 +35,7 @@
 ## Features
 
 - **Java 8+ compatible**: Works with Java 8 and upwards.  
-- **Wide Support**: Supports fetching versions from **Spigot**, **Modrinth**, **CurseForge**, **GitHub**, **Hangar**, **BuiltByBit** and **Polymart**.
+- **Wide Support**: Supports fetching versions from **Spigot**, **Modrinth**, **CurseForge**, **GitHub**, **Hangar**, **BuiltByBit** and **Polymart** (Voxel.shop).
 - **Sync/Async support**: Choose between blocking or non-blocking requests.  
 - **Well-tested**: Robust JUnit test coverage ensures reliability.  
 - **Simple API**: Minimal setup and intuitive methods.  

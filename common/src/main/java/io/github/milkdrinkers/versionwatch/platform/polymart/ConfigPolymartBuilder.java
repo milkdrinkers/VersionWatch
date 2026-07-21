@@ -6,8 +6,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class ConfigPolymartBuilder extends PlatformConfigBuilder<ConfigPolymartBuilder> {
-    private final static String LATEST_RELEASE_LINK = "https://polymart.org/resource/%s/updates";
-    private final static String LATEST_RELEASE_API = "https://api.polymart.org/v1/getResourceInfo/?resource_id=%s";
+    private final static String LATEST_RELEASE_LINK = "https://voxel.shop/product/%s";
+    private final static String LATEST_RELEASE_API = "https://api.voxel.shop/v1/getResourceInfo?resource_id=%s";
 
     private @Nullable String resourceId;
 

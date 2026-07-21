@@ -138,7 +138,7 @@ public class SimpleTest {
         final VersionWatcher watcher = VersionWatcher.builder()
             .withPlatform(Platform.Polymart)
             .withVersion(currentVersion)
-            .withResourceId("773")
+            .withResourceId("5550")
             .withAgent("VersionWatch Test")
             .build();
 
