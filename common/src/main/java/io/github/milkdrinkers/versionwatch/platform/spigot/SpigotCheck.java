@@ -78,7 +78,7 @@ public class SpigotCheck implements PlatformImplementation {
 
             final String version = versionData.getString("name").toUpperCase();
 
-            return Version.of(version);
+            return Version.parseLoose(version);
         } catch (Exception e) {
             throw new BadResponseException("Failed to parse version JSON response.", e);
         }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class SimpleTest {
-    final Version currentVersion = Version.of("0.0.1");
+    final Version currentVersion = Version.parseLoose("0.0.1");
 
     @Test
     public void builtbybit() {

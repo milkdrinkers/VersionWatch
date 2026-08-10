@@ -155,26 +155,27 @@ public class VersionWatcher {
      * Checks if the current version is newer or equal than the latest release
      *
      * @return boolean
-     * @see Version#isNewerOrEqual(Version, Version)
+     * @see Version#isGreaterThan(Version)
+     * @see Version#isEqualTo(Version)
      */
     public boolean isLatest() {
         if (getLatestVersion() == null)
             return true;
 
-        return Version.isNewerOrEqual(getCurrentVersion(), getLatestVersion());
+        return getCurrentVersion().isGreaterThan(getLatestVersion()) || getCurrentVersion().isEqualTo(getLatestVersion());
     }
 
     /**
      * Checks if the current version is outdated
      *
      * @return boolean
-     * @see Version#isOlder(Version, Version)
+     * @see Version#isLessThan(Version)
      */
     public boolean isOutdated() {
         if (getLatestVersion() == null)
             return false;
 
-        return Version.isOlder(getCurrentVersion(), getLatestVersion());
+        return getCurrentVersion().isLessThan(getLatestVersion());
     }
 
     /**
@@ -228,7 +229,7 @@ public class VersionWatcher {
          *
          * @param currentVersion the current version
          * @see Version
-         * @see Version#of(String)
+         * @see Version#parseLoose(String)
          * @see Version#of(long, long, long, String, String)
          */
         @NotNull

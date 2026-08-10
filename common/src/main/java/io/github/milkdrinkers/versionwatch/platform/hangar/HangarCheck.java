@@ -73,7 +73,7 @@ public class HangarCheck implements PlatformImplementation {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             final String content = reader.lines().collect(Collectors.joining());
 
-            return Version.of(content.trim().toUpperCase());
+            return Version.parseLoose(content.trim().toUpperCase());
         } catch (Exception e) {
             throw new BadResponseException("Failed to parse version JSON response.", e);
         }

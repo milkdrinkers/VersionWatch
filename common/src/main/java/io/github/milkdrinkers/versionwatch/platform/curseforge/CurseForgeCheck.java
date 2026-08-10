@@ -90,7 +90,7 @@ public class CurseForgeCheck implements PlatformImplementation {
 
             final String version = latestVersion.getString("displayName").toUpperCase();
 
-            return Version.of(version);
+            return Version.parseLoose(version);
         } catch (Exception e) {
             throw new BadResponseException("Failed to parse version JSON response.", e);
         }

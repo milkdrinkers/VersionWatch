@@ -2,7 +2,7 @@
 
 [libraries]
 annotations = "org.jetbrains:annotations:26.1.0"
-java-semver = "io.github.milkdrinkers:javasemver:1.0.2"
+java-semver = "io.github.milkdrinkers:javasemver:2.0.0"
 json = "org.json:json:20260719"
 
 # Testing

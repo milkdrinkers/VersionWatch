@@ -90,7 +90,7 @@ public class ModrinthCheck implements PlatformImplementation {
 
                 final String version = release.getString("version_number").toUpperCase();
 
-                return Version.of(version);
+                return Version.parseLoose(version);
             }
 
             return null;
