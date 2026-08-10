@@ -23,6 +23,8 @@ subprojects {
     project.version = rootProject.version
     project.description = rootProject.description
 
+    base.archivesName.set("${rootProject.name}-${project.name}")
+
     repositories {
         maven("https://repo.papermc.io/repository/maven-public/")
         maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
