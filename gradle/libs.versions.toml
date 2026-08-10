@@ -6,7 +6,7 @@ java-semver = "io.github.milkdrinkers:javasemver:2.0.0"
 json = "org.json:json:20260719"
 
 # Testing
-junit-bom = "org.junit:junit-bom:6.1.2"
+junit-bom = "org.junit:junit-bom:6.1.3"
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
 junit-platform = { module = "org.junit.platform:junit-platform-launcher" }
 
@@ -15,4 +15,4 @@ junit = ["junit-jupiter", "junit-platform"]
 
 [plugins]
 publisher = "com.vanniktech.maven.publish:0.37.0"
-shadow = "com.gradleup.shadow:9.6.0"
+shadow = "com.gradleup.shadow:9.6.1"
